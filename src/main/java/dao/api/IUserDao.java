@@ -4,6 +4,7 @@ package dao.api;
 import entity.UserEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface IUserDao {
 //исправить на entity
@@ -16,5 +17,5 @@ public interface IUserDao {
     void create(UserEntity userEntity);
 
     void update(UserEntity userEntity);
-    UserEntity get(long id);
+    UserEntity get(UUID id);
 }

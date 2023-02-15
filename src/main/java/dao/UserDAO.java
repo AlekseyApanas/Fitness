@@ -60,7 +60,7 @@ public class UserDAO implements IUserDao {
     }
 
     public void delete(UserEntity userEntity) {
-        long id = userEntity.getId();
+        UUID id = userEntity.getUuid();
         EntityManager entityManager = null;
         try {
             entityManager = manager.getEntityManager();
@@ -100,7 +100,7 @@ public class UserDAO implements IUserDao {
     }
 
     public void update(UserEntity userEntity) {
-        long id = userEntity.getId();
+        UUID id = userEntity.getUuid();
         EntityManager entityManager = null;
         try {
             entityManager = manager.getEntityManager();

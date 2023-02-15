@@ -41,4 +41,36 @@ public class UserEntity {
         this.role = role;
         this.status = status;
     }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getFio() {
+        return fio;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public LocalDateTime getDtCreate() {
+        return dtCreate;
+    }
+
+    public LocalDateTime getDtUpdate() {
+        return dtUpdate;
+    }
+
+    public RoleUser getRole() {
+        return role;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
 }
