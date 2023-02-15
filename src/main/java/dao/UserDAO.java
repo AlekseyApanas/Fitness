@@ -35,13 +35,13 @@ public class UserDAO implements IUserDao {
         return resultList;
     }
 
-    public boolean isContain(long id) {
+    public boolean isContain(UUID uuid) {
         boolean result = false;
         EntityManager entityManager = null;
         try {
             entityManager = manager.getEntityManager();
             entityManager.getTransaction().begin();
-            UserEntity userEntity = entityManager.find(UserEntity.class, id);
+            UserEntity userEntity = entityManager.find(UserEntity.class, uuid);
             entityManager.getTransaction().commit();
 
             if (userEntity != null) {
@@ -57,29 +57,6 @@ public class UserDAO implements IUserDao {
         }
 
         return result;
-    }
-
-    public void delete(UserEntity userEntity) {
-        UUID id = userEntity.getUuid();
-        EntityManager entityManager = null;
-        try {
-            entityManager = manager.getEntityManager();
-            entityManager.getTransaction().begin();
-            userEntity = entityManager.find(UserEntity.class, id, LockModeType.OPTIMISTIC);
-            if (userEntity != null) {
-                entityManager.remove(userEntity);
-                entityManager.getTransaction().commit();
-            } else {
-                entityManager.getTransaction().commit();
-                throw new NullPointerException("Delete is not possible. The singer wasn't found in the database");
-            }
-        } catch (RuntimeException e) {
-            throw new RuntimeException("DataBase error", e);
-        } finally {
-            if (entityManager != null) {
-                entityManager.close();
-            }
-        }
     }
 
     public void create(UserEntity userEntity) {

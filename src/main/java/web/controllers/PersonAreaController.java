@@ -2,17 +2,14 @@ package web.controllers;
 
 import dto.*;
 import org.springframework.web.bind.annotation.*;
-import service.api.IPersonArea;
-import service.api.IUserService;
+import service.api.IPersonAreaService;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/users")
 public class PersonAreaController {
-    private IPersonArea iPersonArea;
+    private IPersonAreaService iPersonArea;
 
-    public PersonAreaController(IPersonArea iPersonArea) {
+    public PersonAreaController(IPersonAreaService iPersonArea) {
         this.iPersonArea = iPersonArea;
     }
     @RequestMapping(path = "/registration",method = RequestMethod.POST)
