@@ -1,8 +1,8 @@
 package service.api;
 
-import dto.SaveUserDTO;
-import dto.UserDTO;
-import dto.UserPageDTO;
+import core.dto.SaveUserDTO;
+import core.dto.UserDTO;
+import core.dto.UserPageDTO;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

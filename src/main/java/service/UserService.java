@@ -1,10 +1,14 @@
 package service;
 
 import dao.api.IUserDao;
-import dto.SaveUserDTO;
-import dto.UserDTO;
-import dto.UserPageDTO;
+import core.dto.SaveUserDTO;
+import core.dto.UserDTO;
+import core.dto.UserPageDTO;
 import entity.UserEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import service.api.IUserService;
 import userEnum.RoleUser;
 import userEnum.Status;
@@ -15,7 +19,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class UserService implements IUserService {
+
     private final IUserDao dao;
+
 
     public UserService(IUserDao dao) {
         this.dao = dao;
@@ -28,14 +34,18 @@ public class UserService implements IUserService {
         String password = userDTO.getPassword();
         UUID uuid = UUID.randomUUID();
         LocalDateTime dtCreate = LocalDateTime.now();
-        RoleUser roleUser = RoleUser.USER;
-        Status status = Status.WAITING_ACTIVATION;
+        RoleUser roleUser = userDTO.getRole();
+        Status status = userDTO.getStatus();
         if (fio == null || fio.isBlank()) {
             throw new IllegalArgumentException("Введите ФИО");
         } else if (mail == null || mail.isBlank()) {
             throw new IllegalArgumentException("Введите почту");
         } else if (password == null || password.isBlank()) {
             throw new IllegalArgumentException("Введите пароль");
+        } else if (roleUser == null || password.isBlank()) {
+            throw new IllegalArgumentException("Введите роль");
+        } else if (status == null || password.isBlank()) {
+            throw new IllegalArgumentException("Введите статус");
         } else {
             dao.create(new UserEntity(uuid, mail, fio, password, dtCreate, dtCreate, roleUser, status));
         }

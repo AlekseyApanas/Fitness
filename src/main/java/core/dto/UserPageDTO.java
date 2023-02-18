@@ -1,6 +1,7 @@
-package dto;
+package core.dto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class UserPageDTO {
     private int number;
@@ -63,6 +64,33 @@ public class UserPageDTO {
 
     public List<SaveUserDTO> getUser() {
         return user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserPageDTO that = (UserPageDTO) o;
+        return number == that.number && size == that.size && totalPages == that.totalPages && totalElements == that.totalElements && first == that.first && numberOfElements == that.numberOfElements && last == that.last && Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number, size, totalPages, totalElements, first, numberOfElements, last, user);
+    }
+
+    @Override
+    public String toString() {
+        return "UserPageDTO{" +
+                "number=" + number +
+                ", size=" + size +
+                ", totalPages=" + totalPages +
+                ", totalElements=" + totalElements +
+                ", first=" + first +
+                ", numberOfElements=" + numberOfElements +
+                ", last=" + last +
+                ", user=" + user +
+                '}';
     }
 }
 

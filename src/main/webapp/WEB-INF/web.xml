@@ -1,7 +1,7 @@
 <web-app>
-    <listener>
-        <listener-class>groupwork.web.listeners.PropertiesLoaderListener</listener-class>
-    </listener>
+<!--    <listener>
+        <listener-class>web.listeners.PropertiesLoaderListener</listener-class>
+    </listener>-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>

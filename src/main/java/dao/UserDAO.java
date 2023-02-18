@@ -3,6 +3,9 @@ package dao;
 import dao.api.IUserDao;
 import dao.orm.api.IManager;
 import entity.UserEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
@@ -12,6 +15,7 @@ import java.util.UUID;
 public class UserDAO implements IUserDao {
     private IManager manager;
 
+    @Autowired
     public UserDAO(IManager manager) {
         this.manager = manager;
     }
@@ -22,7 +26,7 @@ public class UserDAO implements IUserDao {
         try {
             entityManager = manager.getEntityManager();
             entityManager.getTransaction().begin();
-            resultList = entityManager.createQuery("from GenreEntity", UserEntity.class).getResultList();
+            resultList = entityManager.createQuery("from UserEntity", UserEntity.class).getResultList();
             entityManager.getTransaction().commit();
 
         } catch (RuntimeException e) {

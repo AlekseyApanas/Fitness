@@ -1,6 +1,5 @@
 package entity;
 
-import org.hibernate.annotations.GenericGenerator;
 import userEnum.RoleUser;
 import userEnum.Status;
 
@@ -9,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "")
+@Table(name = "fitness.user")
 public class UserEntity {
     @Id
     private UUID uuid;

@@ -1,6 +1,8 @@
 package web.controllers;
 
-import dto.*;
+import core.dto.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.api.IPersonAreaService;
 
@@ -12,22 +14,27 @@ public class PersonAreaController {
     public PersonAreaController(IPersonAreaService iPersonArea) {
         this.iPersonArea = iPersonArea;
     }
-    @RequestMapping(path = "/registration",method = RequestMethod.POST)
-    public void registration(@RequestBody UserRegistrationDTO userRegistrationDTO) {
+
+    @RequestMapping(path = "/registration", method = RequestMethod.POST)
+    public ResponseEntity<?> registration(@RequestBody UserRegistrationDTO userRegistrationDTO) {
         iPersonArea.registration(userRegistrationDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
     @RequestMapping(path = "/verification", method = RequestMethod.GET)
-    public void verification(String code) {
-        iPersonArea.verification(code);
+    public ResponseEntity<?> verification(String code, String mail) {
+        iPersonArea.verification(code, mail);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @RequestMapping(path = "/login",method = RequestMethod.POST)
-    public void logIn(@RequestBody UserLogInDTO userLogInDTO) {
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public ResponseEntity<?> logIn(@RequestBody UserLogInDTO userLogInDTO) {
         iPersonArea.logIn(userLogInDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @RequestMapping(path = "/me",method = RequestMethod.GET)
-    public SaveUserDTO get() {
-        return iPersonArea.infoAboutMe();
+    @RequestMapping(path = "/me", method = RequestMethod.GET)
+    public ResponseEntity<SaveUserDTO> get() {
+        return ResponseEntity.status(HttpStatus.CREATED).body(iPersonArea.infoAboutMe());
     }
 }
